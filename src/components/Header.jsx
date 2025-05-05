@@ -8,6 +8,7 @@ import {
   Moon,
   SunIcon,
   MoonIcon,
+  Sparkles,
 } from "lucide-react";
 
 const Header = ({ darkMode, toggleDarkMode }) => {
@@ -16,7 +17,6 @@ const Header = ({ darkMode, toggleDarkMode }) => {
 
   return (
     <header className="w-full">
-      {/* Top navigation */}
       <div className="bg-white dark:bg-gray-900 py-2 px-4 flex justify-end text-xs space-x-4 border-b border-gray-200">
         <Link to="/find-a-store" className="hover:underline">
           Find a Store
@@ -35,10 +35,8 @@ const Header = ({ darkMode, toggleDarkMode }) => {
         </Link>
       </div>
 
-      {/* Main navigation */}
       <div className="px-4 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-8">
-          {/* Nike logo */}
           <Link to="/" className="mr-6">
             <svg
               aria-hidden="true"
@@ -49,7 +47,6 @@ const Header = ({ darkMode, toggleDarkMode }) => {
               width="28px"
               height="28px"
               fill="none"
-              
             >
               <path
                 fill="currentColor"
@@ -60,7 +57,6 @@ const Header = ({ darkMode, toggleDarkMode }) => {
             </svg>
           </Link>
 
-          {/* Main menu */}
           <nav className="hidden md:flex space-x-6 text-sm font-medium">
             <Link
               to="/new"
@@ -99,11 +95,16 @@ const Header = ({ darkMode, toggleDarkMode }) => {
             >
               SNKRS
             </Link>
+            <Link
+              to="/auctions"
+              className="text-pink-500 hover:text-yellow-400 dark:text-pink-400 dark:hover:text-yellow-300 font-semibold transition-colors duration-300 flex items-center gap-1"
+            >
+              Auctions <Sparkles />
+            </Link>
           </nav>
         </div>
 
         <div className="flex items-center space-x-4">
-          {/* Search bar */}
           <div className="relative hidden md:block">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <Search className="w-5 h-5 text-gray-400" />
@@ -142,13 +143,6 @@ const Header = ({ darkMode, toggleDarkMode }) => {
             <ShoppingBag className="w-5 h-5" />
           </Link>
         </div>
-      </div>
-
-      <div className="bg-gray-100 dark:bg-gray-900 py-3 text-center text-sm border-t border-b border-gray-200 dark:border-gray-700">
-        <p>New Styles On Sale: Up To 40% Off</p>
-        <Link to="/sale" className="underline text-xs hover:no-underline">
-          Shop All Our New Markdowns
-        </Link>
       </div>
 
       {showMegaMenu && (
@@ -341,6 +335,13 @@ const Header = ({ darkMode, toggleDarkMode }) => {
           </div>
         </div>
       )}
+
+      <div className="bg-gray-100 dark:bg-gray-900 py-3 text-center text-sm border-t border-b border-gray-200 dark:border-gray-700">
+        <p>New Styles On Sale: Up To 40% Off</p>
+        <Link to="/sale" className="underline text-xs hover:no-underline">
+          Shop All Our New Markdowns
+        </Link>
+      </div>
     </header>
   );
 };

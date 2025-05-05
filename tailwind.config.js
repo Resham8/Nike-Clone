@@ -39,7 +39,8 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },        
+        },
+        // Nike brand colors
         "nike-red": "#f96067",
         "nike-orange": "#fa8925",
         "nike-yellow": "#ffd01a",
