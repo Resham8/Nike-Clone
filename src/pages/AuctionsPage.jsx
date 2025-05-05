@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { auctions as initialAuctions } from "../data/products"
@@ -13,7 +15,7 @@ const AuctionsPage = () => {
   const [selectedAuction, setSelectedAuction] = useState(null)
   const [bidAmount, setBidAmount] = useState("")
 
-  useEffect(() => {    
+  useEffect(() => {
     if (location.state?.newAuction) {
       const newAuction = {
         ...location.state.newAuction,
@@ -55,7 +57,7 @@ const AuctionsPage = () => {
   })
 
   const handleBidClick = (auction) => {
-    setSelectedAuction(auction)    
+    setSelectedAuction(auction)
     const currentBidValue = Number.parseFloat(auction.currentBid.replace(/[^\d.]/g, ""))
     setBidAmount((currentBidValue + 500).toString())
     setShowBidModal(true)
@@ -71,7 +73,7 @@ const AuctionsPage = () => {
       alert("Your bid must be higher than the current bid")
       return
     }
-    
+
     const updatedAuctions = auctions.map((auction) => {
       if (auction.id === selectedAuction.id) {
         return {
@@ -136,7 +138,7 @@ const AuctionsPage = () => {
           />
         </div>
       </div>
-      
+
       {sortedAuctions.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedAuctions.map((auction) => (
@@ -148,7 +150,11 @@ const AuctionsPage = () => {
                 <img
                   src={auction.image || "/placeholder.svg?height=300&width=400&text=" + auction.designName}
                   alt={auction.designName}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-64 object-contain bg-white"
+                  onError={(e) => {
+                    e.target.onerror = null
+                    e.target.src = "/placeholder.svg?height=300&width=400&text=" + auction.designName
+                  }}
                 />
                 <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs">
                   {auction.timeLeft}
@@ -202,7 +208,7 @@ const AuctionsPage = () => {
           </Link>
         </div>
       )}
-      
+
       {showBidModal && selectedAuction && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
